@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vercel Hello World</title>
+  <meta name="description" content="A modern, high-aesthetic Vercel Hello World showcase application.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-grid" aria-hidden="true"></div>
+  <div class="radial-glow" id="mouse-glow" aria-hidden="true"></div>
+
+  <main class="container">
+    <!-- Header / Status Badge -->
+    <header class="status-bar">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span class="status-text">Production Ready</span>
+      </div>
+      <div class="time-badge" id="live-time">00:00:00</div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-card">
+      <div class="vercel-logo-wrapper">
+        <svg class="vercel-logo" viewBox="0 0 115 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M57.5 0L115 100H0L57.5 0Z" fill="url(#vercel-gradient)"/>
+          <defs>
+            <linearGradient id="vercel-gradient" x1="57.5" y1="0" x2="57.5" y2="100" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#FFFFFF"/>
+              <stop offset="1" stop-color="#888888"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="logo-glow"></div>
+      </div>
+
+      <div class="badge-tag">NEXT GENERATION WEB</div>
+      
+      <h1 class="hero-title">
+        <span class="gradient-text">Vercel</span>
+        <br>
+        <span class="white-text">Hello World</span>
+      </h1>
+
+      <p class="hero-description">
+        클라우드 플랫폼 Vercel 환경에 최적화된 모던 웹 스타터 페이지입니다.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="button-group">
+        <button id="copy-btn" class="btn btn-primary" type="button">
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span id="copy-text">문구 복사하기</span>
+        </button>
+
+        <a id="vercel-docs-link" href="https://vercel.com/docs" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          <span>Vercel 가이드</span>
+          <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Quick Info Cards -->
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-label">Platform</span>
+          <span class="feature-val">Vercel Edge</span>
+        </div>
+        <div class="feature-card">
+          <span class="feature-label">Latency</span>
+          <span class="feature-val" id="latency-val">~12ms</span>
+        </div>
+        <div class="feature-card">
+          <span class="feature-label">Framework</span>
+          <span class="feature-val">Vanilla Pure Web</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>배포 준비 완료 · <code>git push</code> 시 자동 배포</span>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
