@@ -1,55 +1,103 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Mouse Spotlight tracking
-  const glow = document.getElementById('mouse-glow');
-  window.addEventListener('mousemove', (e) => {
-    if (glow) {
-      glow.style.left = `${e.clientX}px`;
-      glow.style.top = `${e.clientY}px`;
+  // Modal Elements
+  const modal = document.getElementById('download-modal');
+  const modalEmailDesc = document.getElementById('modal-email-desc');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
+  const modalDownloadTrigger = document.getElementById('modal-download-trigger');
+
+  function openModal(email) {
+    if (modalEmailDesc) {
+      modalEmailDesc.innerHTML = `<strong>${escapeHtml(email)}</strong>(으)로 <strong>[VibeMVP_프롬프트_가이드북.pdf]</strong> 다운로드 링크를 전송했습니다.`;
     }
-  });
-
-  // 2. Real-time Clock
-  const timeDisplay = document.getElementById('live-time');
-  function updateTime() {
-    if (!timeDisplay) return;
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-    timeDisplay.textContent = `${hours}:${minutes}:${seconds} UTC+9`;
+    if (modal) {
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+    }
   }
-  updateTime();
-  setInterval(updateTime, 1000);
 
-  // 3. Copy Text to Clipboard
-  const copyBtn = document.getElementById('copy-btn');
-  const copyText = document.getElementById('copy-text');
+  function closeModal() {
+    if (modal) {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+  }
 
-  if (copyBtn && copyText) {
-    copyBtn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText('Vercel Hello World');
-        const originalText = copyText.textContent;
-        copyText.textContent = '✓ 복사 완료!';
-        copyBtn.style.borderColor = '#10b981';
+  function escapeHtml(string) {
+    return String(string)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
 
-        setTimeout(() => {
-          copyText.textContent = originalText;
-          copyBtn.style.borderColor = '#ffffff';
-        }, 2000);
-      } catch (err) {
-        console.error('Failed to copy: ', err);
+  // Handle Form 1
+  const form1 = document.getElementById('lead-form');
+  const emailInput1 = document.getElementById('lead-email');
+
+  if (form1) {
+    form1.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = emailInput1.value.trim();
+      if (!email) return;
+
+      saveLead(email);
+      openModal(email);
+      emailInput1.value = '';
+    });
+  }
+
+  // Handle Form 2 (Bottom CTA)
+  const form2 = document.getElementById('lead-form-2');
+  const emailInput2 = document.getElementById('lead-email-2');
+
+  if (form2) {
+    form2.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = emailInput2.value.trim();
+      if (!email) return;
+
+      saveLead(email);
+      openModal(email);
+      emailInput2.value = '';
+    });
+  }
+
+  // Save to LocalStorage for offline/demo testing
+  function saveLead(email) {
+    try {
+      const existing = JSON.parse(localStorage.getItem('vibemvp_leads') || '[]');
+      existing.push({ email, timestamp: new Date().toISOString() });
+      localStorage.setItem('vibemvp_leads', JSON.stringify(existing));
+      console.log('Lead captured successfully:', email);
+    } catch (e) {
+      console.warn('Storage error: ', e);
+    }
+  }
+
+  // Close handlers
+  if (modalCloseBtn) {
+    modalCloseBtn.addEventListener('click', closeModal);
+  }
+
+  if (modalDownloadTrigger) {
+    modalDownloadTrigger.addEventListener('click', () => {
+      alert('가이드북 샘플 파일 다운로드가 시작되었습니다!');
+      closeModal();
+    });
+  }
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
       }
     });
   }
 
-  // 4. Latency dynamic calculation
-  const latencyVal = document.getElementById('latency-val');
-  if (latencyVal && window.performance) {
-    const timing = performance.timing || performance.getEntriesByType('navigation')[0];
-    if (timing) {
-      const loadTime = Math.round(performance.now());
-      latencyVal.textContent = `${Math.max(5, loadTime % 30)}ms`;
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+      closeModal();
     }
-  }
+  });
 });
