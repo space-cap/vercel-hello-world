@@ -1,46 +1,79 @@
+<!-- CH 07 -->
 <section class="chapter-section" id="ch07">
-        <div class="chapter-entry">
-          <div class="chapter-num-big">07</div>
-          <h2 class="chapter-h2">Day 1: Cursor 세팅과<br>첫 컴포넌트 바이브코딩</h2>
-          <div class="chapter-meta"><span>⏱ 약 4분</span><span>·</span><span>PART 3 · 실행</span></div>
-        </div>
-        <p class="lead">Cursor는 AI가 코드를 직접 작성하고 수정하는 에디터입니다. Visual Studio Code에 AI 두뇌를 이식한 것이라고 이해하면 됩니다.</p>
+  <div class="chapter-entry">
+    <div class="chapter-num-big">07</div>
+    <h2 class="chapter-h2">Day 1: Cursor 세팅과<br>첫 컴포넌트 바이브코딩</h2>
+    <div class="chapter-meta"><span>⏱ 약 6분</span><span>·</span><span>PART 3 · 실행</span></div>
+  </div>
+  <p class="lead">Cursor는 AI가 개발자의 손과 눈이 되어 코드를 직접 작성하고 수정하는 차세대 에디터입니다. Visual Studio Code에 초지능 AI 두뇌를 이식한 것이라고 이해하시면 됩니다.</p>
 
-        <h3 class="section-h3">Day 1 체크리스트</h3>
-        <div class="checklist">
-          <label><input type="checkbox"> cursor.sh 에서 Cursor 설치 및 계정 생성</label>
-          <label><input type="checkbox"> Node.js 20 LTS 설치 (nodejs.org)</label>
-          <label><input type="checkbox"> <code>npx create-next-app@latest my-mvp</code> 실행</label>
-          <label><input type="checkbox"> Supabase 프로젝트 생성 (supabase.com)</label>
-          <label><input type="checkbox"> 프로젝트 루트에 <code>.cursorrules</code> 파일 생성</label>
-          <label><input type="checkbox"> GitHub 레포지토리 생성 및 첫 커밋</label>
-        </div>
+  <div class="chapter-hero-media">
+    <img src="images/ch07-cursor-workspace.jpg" alt="Cursor AI 바이브코딩 작업실" class="chapter-hero-img" width="1280" height="720">
+  </div>
 
-        <div class="prompt-box">
-          <div class="pb-header">
-            <span class="pb-label">📋 PROMPT #4 — 프로젝트 초기 구조 생성</span>
-            <button class="btn-copy-prompt" data-target="p4">복사</button>
-          </div>
-          <pre id="p4">Next.js 15 App Router 기반으로 다음 MVP의 초기 프로젝트 구조를 만들어 주세요.
+  <h3 class="section-h3">Day 1 세팅 6단계 체크리스트</h3>
+  <div class="checklist">
+    <label><input type="checkbox"> cursor.sh 에서 Cursor 설치 및 계정 로그인</label>
+    <label><input type="checkbox"> Node.js 20 LTS 설치 (nodejs.org 접속 후 추천 버전 다운로드)</label>
+    <label><input type="checkbox"> 터미널에서 <code>npx create-next-app@latest my-mvp</code> 실행</label>
+    <label><input type="checkbox"> Supabase 프로젝트 생성 및 Database 비밀번호 보관 (supabase.com)</label>
+    <label><input type="checkbox"> 프로젝트 루트에 <code>.cursorrules</code> 파일 생성</label>
+    <label><input type="checkbox"> GitHub 레포지토리 연결 및 첫 커밋(Commit)</label>
+  </div>
+
+  <!-- ✦ 비개발자 터미널 공포증 극복 치트키 -->
+  <h3 class="section-h3">⚡ 비개발자 70%가 포기하는 '검은 화면(터미널) 공포증' 극복 3대 치트키</h3>
+  <p>바이브코딩을 시작할 때 비개발자가 가장 얼어붙는 순간은 <em>"명령어를 쳤더니 터미널에 시뻘건 영어 에러 메시지가 쏟아질 때"</em>입니다. 아래 3가지만 알면 터미널은 두려움의 대상이 아니라 마법의 지팡이가 됩니다.</p>
+
+  <div class="numbered-list">
+    <div class="nl-item">
+      <span class="nl-num">01</span>
+      <div class="nl-body">
+        <strong>터미널 열기 단축키는 단 하나: <code>Ctrl + `</code> (맥: <code>Cmd + `</code>)</strong>
+        <p>복잡한 윈도우 파워쉘이나 CMD를 따로 켤 필요가 없습니다. Cursor 안에서 백틱(키보드 1번 좌측 물결 키)을 누르면 아래쪽에 터미널이 마법처럼 나타납니다.</p>
+      </div>
+    </div>
+    <div class="nl-item">
+      <span class="nl-num">02</span>
+      <div class="nl-body">
+        <strong>"빨간 에러 메시지 = AI에게 줄 최고의 먹이"</strong>
+        <p>에러는 대표님이 잘못해서 나는 게 아닙니다. 라이브러리 버전이 안 맞거나 오타가 난 것뿐입니다. 당황해서 창을 끄지 마시고, <strong>빨간 줄 전체를 마우스로 긁어서 복사(Ctrl+C)</strong>하세요.</p>
+      </div>
+    </div>
+    <div class="nl-item">
+      <span class="nl-num">03</span>
+      <div class="nl-body">
+        <strong>Cursor 채팅창(Ctrl + L)에 던지면 3초 만에 해결책을 줍니다</strong>
+        <p>복사한 빨간 줄을 Cursor Chat에 넣고 <em>"이 에러가 왜 났는지 한국어로 알려주고, 터미널에 칠 해결 명령어 1줄만 줘"</em>라고 하면 99.9% 단번에 해결됩니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="prompt-box">
+    <div class="prompt-header">
+      <span class="prompt-title">📋 PROMPT #4 — 프로젝트 초기 구조 생성 프롬프트</span>
+      <button class="btn-copy" data-target="p4">복사</button>
+    </div>
+    <pre class="prompt-code" id="p4">Next.js 15 App Router 기반으로 다음 MVP의 초기 프로젝트 구조를 만들어 주세요.
 
 서비스: [서비스명]
 핵심 기능: [기능 설명]
 기술 스택: Next.js 15, Supabase, TypeScript, Tailwind CSS
 
 요구사항:
-- app/ 디렉토리 구조로 라우팅 설계
+- app/ 디렉토리 구조로 라우팅 설계 (메인, 로그인, 대시보드, 결제)
 - Supabase 클라이언트 초기화 코드 (lib/supabase.ts)
 - 기본 레이아웃 (헤더, 메인, 푸터)
-- 환경변수(.env.local) 필요 항목 목록
-- 각 폴더와 파일의 역할을 주석으로 설명</pre>
-        </div>
+- 환경변수(.env.local) 필요 항목 목록 가이드
+- 각 폴더와 파일의 역할을 비개발자도 이해할 수 있게 한국어 주석으로 설명</pre>
+  </div>
 
-        <div class="prompt-box">
-          <div class="pb-header">
-            <span class="pb-label">📋 PROMPT #5 — .cursorrules 초기 템플릿</span>
-            <button class="btn-copy-prompt" data-target="p5">복사</button>
-          </div>
-          <pre id="p5"># Project: [프로젝트명]
+  <div class="prompt-box">
+    <div class="prompt-header">
+      <span class="prompt-title">📋 PROMPT #5 — .cursorrules 초기 템플릿</span>
+      <button class="btn-copy" data-target="p5">복사</button>
+    </div>
+    <pre class="prompt-code" id="p5"># Project: [프로젝트명]
 # Stack: Next.js 15, Supabase, TypeScript, Tailwind CSS, Toss Payments
 # Role: Senior Fullstack Engineer for a non-technical solo founder
 
@@ -52,5 +85,5 @@
 5. Handle all errors gracefully with user-friendly Korean error messages.
 6. Explain what each code block does in a single Korean comment line above it.
 7. When in doubt, ask for clarification rather than making assumptions.</pre>
-        </div>
-      </section>
+  </div>
+</section>
