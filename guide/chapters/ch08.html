@@ -1,46 +1,75 @@
 <!-- CH 08 -->
-      <section class="chapter-section" id="ch08">
-        <div class="chapter-entry">
-          <div class="chapter-num-big">08</div>
-          <h2 class="chapter-h2">Day 2-4: 핵심 기능 고속 개발 &<br>실시간 피드백 루프</h2>
-          <div class="chapter-meta"><span>⏱ 약 4분</span><span>·</span><span>PART 3 · 실행</span></div>
-        </div>
-        <p class="lead">Day 2부터 4까지 3일 동안이 바이브코딩의 핵심입니다. 이 기간 동안에는 완벽함을 추구하지 마세요. 돌아가는 코드가 완벽한 코드입니다.</p>
+<section class="chapter-section" id="ch08">
+  <div class="chapter-entry">
+    <div class="chapter-num-big">08</div>
+    <h2 class="chapter-h2">Day 2-4: 핵심 기능 고속 개발 &<br>AI 환각 방지 실전 루틴</h2>
+    <div class="chapter-meta"><span>⏱ 약 5분</span><span>·</span><span>PART 3 · 실행</span></div>
+  </div>
+  <p class="lead">Day 2부터 4까지 3일 동안이 바이브코딩의 진정한 승부처입니다. 이 기간 동안에는 완벽함을 추구하지 마세요. <strong>"실제로 버튼이 눌리고, DB에 데이터가 저장되는가?"</strong> 오직 이것 하나만 집중합니다.</p>
 
-        <h3 class="section-h3">데일리 바이브코딩 루틴 (3단계)</h3>
-        <div class="routine-grid">
-          <div class="rg-item">
-            <div class="rg-time">🌅 오전 (2시간)</div>
-            <div class="rg-title">어제 코드 리뷰 & 오늘 목표 설정</div>
-            <p>Cursor에게 "오늘 완성할 기능을 To-Do 리스트로 만들어줘"라고 요청. 3개 이내로 제한.</p>
-          </div>
-          <div class="rg-item">
-            <div class="rg-time">☀️ 오후 (4시간)</div>
-            <div class="rg-title">집중 바이브코딩 세션</div>
-            <p>Cursor와 1:1 대화로 기능을 구현. 막히면 에러 메시지를 그대로 복사해서 질문.</p>
-          </div>
-          <div class="rg-item">
-            <div class="rg-time">🌙 저녁 (1시간)</div>
-            <div class="rg-title">모바일 테스트 & GitHub 커밋</div>
-            <p>스마트폰으로 직접 실제 사용해보기. 오늘 작업을 커밋하고 내일 목표 1개 미리 기록.</p>
-          </div>
-        </div>
+  <h3 class="section-h3">데일리 바이브코딩 루틴 (3단계)</h3>
+  <div class="numbered-list">
+    <div class="nl-item">
+      <span class="nl-num">01</span>
+      <div class="nl-body">
+        <strong>🌅 오전 (1~2시간) · 목표 쪼개기</strong>
+        <p>Cursor에게 "오늘 만들 핵심 기능 1개를 위해 수정해야 할 컴포넌트 목록을 3개 이내로 작성해줘"라고 요청합니다. 범위를 좁힐수록 AI의 코딩 정확도가 3배 올라갑니다.</p>
+      </div>
+    </div>
+    <div class="nl-item">
+      <span class="nl-num">02</span>
+      <div class="nl-body">
+        <strong>☀️ 오후 (2~3시간) · 컴포넌트 단위 구현</strong>
+        <p>화면 전체를 한 번에 만들지 말고, [버튼 클릭 이벤트] → [데이터베이스 전송] → [성공 화면 렌더링] 순서로 한 블록씩 Cursor와 대화하며 살을 붙입니다.</p>
+      </div>
+    </div>
+    <div class="nl-item">
+      <span class="nl-num">03</span>
+      <div class="nl-body">
+        <strong>🌙 저녁 (30분) · 스마트폰 실기기 테스트 & Git 커밋</strong>
+        <p>PC 브라우저뿐 아니라 본인의 스마트폰으로 실제 링크에 접속해 결제와 입력 흐름이 어색하지 않은지 직접 만져봅니다. 정상 작동을 확인한 즉시 커밋(Commit)을 남겨 타임머신을 만들어 둡니다.</p>
+      </div>
+    </div>
+  </div>
 
-        <div class="prompt-box">
-          <div class="pb-header">
-            <span class="pb-label">📋 PROMPT #6 — 에러 자동 디버깅 프롬프트</span>
-            <button class="btn-copy-prompt" data-target="p6">복사</button>
-          </div>
-          <pre id="p6">다음 에러가 발생했습니다. 원인을 분석하고 수정된 전체 코드를 주세요.
+  <!-- 비개발자를 위한 AI 환각 방지 3대 수칙 -->
+  <h3 class="section-h3">⚠️ 비개발자가 90% 좌절하는 'AI 코드 덮어쓰기' 방지법</h3>
+  <p>바이브코딩을 하다가 가장 멘붕에 빠지는 순간은 <em>"새 기능 하나 넣었더니 멀쩡하던 기존 화면이 다 하얗게 날아갔을 때"</em>입니다. 이를 방지하는 3가지 철칙을 반드시 기억하세요.</p>
+
+  <div class="callout callout-warning">
+    <div class="callout-icon">🚨</div>
+    <div class="callout-body">
+      <strong>AI 환각 방지 3대 수칙</strong><br>
+      1. <strong>한 번에 파일 하나만:</strong> 여러 파일을 동시에 고치라고 하지 말고, <code>@파일명</code>으로 한 파일씩 지정하세요.<br>
+      2. <strong>'전체 코드' 강제:</strong> AI에게 수정본을 요청할 때 <em>"생략 부호(...) 없이 완성된 전체 코드를 제공하라"</em>고 명시하세요. 축약 코드를 복사했다가 기존 로직이 삭제되는 참사가 일어납니다.<br>
+      3. <strong>Git 커밋 습관:</strong> 기능 하나가 성공할 때마다 무조건 커밋을 찍으세요. 에러가 나면 1초 만에 되돌릴 수 있습니다.
+    </div>
+  </div>
+
+  <div class="prompt-box">
+    <div class="prompt-header">
+      <span class="prompt-title">📋 PROMPT #6 — 에러 자동 디버깅 & 안전 복구 프롬프트</span>
+      <button class="btn-copy" data-target="p6">복사</button>
+    </div>
+    <pre class="prompt-code" id="p6">다음 에러가 발생했습니다. 원인을 분석하고, 기존 기능을 100% 보존하면서 수정된 전체 코드를 제공해 주세요.
 
 에러 메시지:
-[에러 메시지를 여기에 붙여넣으세요]
+[터미널이나 브라우저 콘솔에 뜬 빨간색 에러 메시지 전체 복사]
 
-현재 코드:
-[문제가 있는 파일의 전체 코드를 여기에 붙여넣으세요]
+현재 문제 파일:
+[문제가 발생한 파일의 전체 코드]
 
-조건:
-- 기존 Supabase 연결 및 인증 로직을 건드리지 마세요.
-- 수정 이유를 한국어 주석으로 설명해 주세요.</pre>
-        </div>
-      </section>
+절대 원칙:
+1. 기존에 잘 작동하던 Supabase Auth, DB 조회, 또는 결제 로직을 절대 삭제하거나 변경하지 마세요.
+2. 해결을 위해 수정한 1~2개 줄을 한국어로 명확히 지목하고, 파일 전체 코드를 온전히 작성해 주세요.
+3. 축약 기호(// ... 기존 코드 생략)를 절대 사용하지 마세요.</pre>
+  </div>
+
+  <div class="callout callout-case">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <strong>VibeCraft Insight: "개발은 AI가 하지만, 아키텍처는 설계자의 몫입니다"</strong><br>
+      Cursor나 Claude는 놀라운 코딩 조수이지만, "어떤 순서로 DB를 짜고 API를 분리해야 런칭 후 트래픽이 터져도 서버가 안 죽는지"는 알려주지 않습니다. 초기 뼈대를 튼튼하게 잡고 시작해야 이후 혼자서도 안전하게 기능을 추가할 수 있습니다.
+    </div>
+  </div>
+</section>

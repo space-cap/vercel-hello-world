@@ -1,73 +1,73 @@
 <section class="chapter-section" id="ch11">
-        <div class="chapter-entry">
-          <div class="chapter-num-big">11</div>
-          <h2 class="chapter-h2">.cursorrules 전략:<br>당신의 제품을 AI가 영구적으로 이해하게 만드는 법</h2>
-          <div class="chapter-meta"><span>⏱ 약 5분</span><span>·</span><span>PART 4 · 외주 졸업</span></div>
-        </div>
-        <p class="lead">.cursorrules는 Cursor AI에게 "이 프로젝트는 이런 구조이고, 이런 방식으로 코딩해야 한다"는 영구 기억을 심어주는 파일입니다. 이것이 바로 외주 졸업 키트의 핵심입니다.</p>
+  <div class="chapter-entry">
+    <div class="chapter-num-big">11</div>
+    <h2 class="chapter-h2">.cursorrules 전략:<br>당신의 제품을 AI가 영구적으로 이해하게 만드는 법</h2>
+    <div class="chapter-meta"><span>⏱ 약 5분</span><span>·</span><span>PART 4 · 외주 졸업</span></div>
+  </div>
+  <p class="lead">.cursorrules는 Cursor AI에게 "이 프로젝트는 이런 아키텍처이고, 어떤 파일도 함부로 지우지 말라"는 영구 기억을 심어주는 파일입니다. 이것이 바로 <strong>비개발자가 외주사에 평생 종속되지 않고 스스로 서비스를 운영할 수 있는 '외주 졸업 키트'의 핵심 비결</strong>입니다.</p>
 
-        <h3 class="section-h3">3가지 유형별 .cursorrules 전문 템플릿</h3>
+  <h3 class="section-h3">3가지 비즈니스 유형별 .cursorrules 실전 템플릿</h3>
 
-        <div class="prompt-box">
-          <div class="pb-header">
-            <span class="pb-label">📋 Type A — SaaS / 구독형 서비스용 .cursorrules</span>
-            <button class="btn-copy-prompt" data-target="p-rules-a">복사</button>
-          </div>
-          <pre id="p-rules-a"># Project Type: B2C SaaS with Subscription
-# Stack: Next.js 15, Supabase, Stripe or Toss (recurring billing), TypeScript
+  <div class="prompt-box">
+    <div class="prompt-header">
+      <span class="prompt-title">📋 Type A — B2C SaaS / 월 구독형 서비스용 .cursorrules</span>
+      <button class="btn-copy" data-target="p-rules-a">복사</button>
+    </div>
+    <pre class="prompt-code" id="p-rules-a"># Project Type: B2C SaaS with Subscription
+# Stack: Next.js 15, Supabase, Toss Payments / Stripe, TypeScript, Tailwind CSS
+# Role: Senior Fullstack Architect for a non-technical solo founder
 
-## Core Rules
-1. Always preserve the subscription status check logic in middleware.ts
-2. Never expose secret keys; always use server-side API routes for payment operations
-3. Use Row Level Security (RLS) in Supabase — every table must have user-scoped policies
-4. Write idempotent webhook handlers — duplicate events must be safely ignored
-5. All UI text must be in Korean; all variable names in English
+## Core Architecture Rules
+1. Always preserve the subscription status check logic in middleware.ts. Non-paying users must never access /dashboard.
+2. Never expose secret keys; all payment operations and Supabase service-role calls must happen strictly in /app/api/*.
+3. Use Row Level Security (RLS) in Supabase — every table must have user-scoped policies (auth.uid() = user_id).
+4. Write idempotent webhook handlers — duplicate payment events with the same orderId must be safely ignored.
+5. All user-facing UI text must be in polished Korean; code identifiers in clean English.
 
-## Code Style
-- Components: PascalCase (.tsx), Hooks: camelCase with 'use' prefix
-- Always add loading and error states to async components
-- Prefer Server Components; use Client Components only when user interaction is needed</pre>
-        </div>
+## Safe Modification Rules
+- When the user asks for a UI change, only modify the specific component. Never rewrite the entire parent layout.
+- Always provide the complete file without truncation or ellipses (...).</pre>
+  </div>
 
-        <div class="prompt-box">
-          <div class="pb-header">
-            <span class="pb-label">📋 Type B — 마켓플레이스 / 단건 결제용 .cursorrules</span>
-            <button class="btn-copy-prompt" data-target="p-rules-b">복사</button>
-          </div>
-          <pre id="p-rules-b"># Project Type: Digital Marketplace with One-time Payment
-# Stack: Next.js 15, Supabase Storage, Toss Payments (one-time), TypeScript
+  <div class="prompt-box">
+    <div class="prompt-header">
+      <span class="prompt-title">📋 Type B — 디지털 콘텐츠 / 단건 결제 마켓플레이스용 .cursorrules</span>
+      <button class="btn-copy" data-target="p-rules-b">복사</button>
+    </div>
+    <pre class="prompt-code" id="p-rules-b"># Project Type: Digital Asset Marketplace with One-time Payment
+# Stack: Next.js 15, Supabase Storage, Toss Payments, TypeScript, Tailwind
 
-## Core Rules
-1. Payment confirmation must always happen server-side — never trust client-side callbacks
-2. Download links must be generated server-side with signed URLs (15-minute expiry)
-3. Supabase Storage bucket must be private — never public
-4. Every purchase creates a record in the 'purchases' table before download is allowed
-5. Handle Toss webhook idempotency using the payment orderId as a unique key
+## Core Architecture Rules
+1. Payment confirmation must strictly occur server-side — never trust client-side parameters.
+2. Digital download links must be generated as temporary signed URLs (15-minute expiration).
+3. The Supabase Storage bucket for paid files must be PRIVATE — never public.
+4. Every valid purchase must insert a verified row in the 'orders' table before granting asset access.
+5. Prevent duplicate downloads by checking order verification token in the API handler.</pre>
+  </div>
 
-## File Upload Rules
-- Max file size: 50MB per asset
-- Allowed MIME types: PDF, ZIP, PNG, JPG, MP4
-- Always validate file type on both client and server</pre>
-        </div>
+  <div class="prompt-box">
+    <div class="prompt-header">
+      <span class="prompt-title">📋 Type C — 커뮤니티 & 유료 멤버십 플랫폼용 .cursorrules</span>
+      <button class="btn-copy" data-target="p-rules-c">복사</button>
+    </div>
+    <pre class="prompt-code" id="p-rules-c"># Project Type: Community & Membership Platform
+# Stack: Next.js 15 App Router, Supabase Auth & DB, Toss Recurring, Tailwind
 
-        <div class="prompt-box">
-          <div class="pb-header">
-            <span class="pb-label">📋 Type C — 콘텐츠 플랫폼 / 멤버십용 .cursorrules</span>
-            <button class="btn-copy-prompt" data-target="p-rules-c">복사</button>
-          </div>
-          <pre id="p-rules-c"># Project Type: Content Platform with Membership Tiers
-# Stack: Next.js 15, Supabase, Toss (recurring), TypeScript, MDX for content
+## Core Architecture Rules
+1. Gate premium content by inspecting user's active membership tier (FREE | PRO | VIP) server-side.
+2. Never send blurred premium content HTML to non-paying users — fetch from DB only if authorized.
+3. Optimize page load speeds using Next.js ISR (Incremental Static Regeneration) where possible.
+4. Provide immediate visual feedback (loading spinners, optimistic updates) for all user actions.</pre>
+  </div>
 
-## Core Rules
-1. Gate premium content by checking user's active subscription tier in middleware
-2. Never render premium content in the HTML for non-paying users — check server-side
-3. Membership tiers: FREE | BASIC | PRO — always check the correct tier before rendering
-4. All content is stored in /content/*.mdx — never in the database
-5. Cache content pages with Next.js ISR (revalidate: 3600)
-
-## Editorial Rules
-- All article slugs must be in English, kebab-case
-- Author attribution is required for every article
-- Tag taxonomy must be consistent — no ad-hoc tags</pre>
-        </div>
-      </section>
+  <!-- 비개발자를 위한 외주 졸업 룰북의 진실 -->
+  <div class="callout callout-case">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <strong>왜 기존 외주사는 .cursorrules를 주지 않을까요?</strong><br>
+      외주사의 핵심 수익원은 초기 개발비가 아니라 <strong>"런칭 후 매달 청구하는 유지보수 계약금과 사소한 수정 비용"</strong>입니다. 고객이 스스로 AI와 대화하며 버튼을 바꾸고 새 페이지를 추가할 수 있게 되면, 외주사의 밥줄이 끊기기 때문입니다.<br><br>
+      <strong>VibeCraft는 정반대의 길을 갑니다:</strong><br>
+      우리는 대표님이 외주사 없이 100% 자립하는 것을 목표로 합니다. 7일 만에 완성된 제품을 넘겨드릴 때, <strong>해당 프로젝트의 파일 트리와 데이터베이스 구조를 100% 학습시킨 [맞춤형 .cursorrules]를 함께 납품</strong>합니다. 대표님은 이것 하나만 Cursor 폴더에 넣어두면 평생 유지보수 비용 0원으로 서비스를 마음껏 진화시킬 수 있습니다.
+    </div>
+  </div>
+</section>

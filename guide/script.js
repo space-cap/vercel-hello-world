@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toast._timer = setTimeout(() => toast.classList.remove('show'), 2500);
   }
 
-  document.querySelectorAll('.btn-copy-prompt').forEach(btn => {
+  document.querySelectorAll('.btn-copy, .btn-copy-prompt').forEach(btn => {
     btn.addEventListener('click', async () => {
       const targetId = btn.getAttribute('data-target');
       const target = document.getElementById(targetId);
@@ -84,9 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         await navigator.clipboard.writeText(target.textContent.trim());
         const orig = btn.textContent;
-        btn.textContent = '✓ 완료!';
-        btn.style.background = '#00ff87';
-        btn.style.color = '#000';
+        btn.textContent = '✓ 복사완료';
+        btn.style.background = '#10b981';
+        btn.style.color = '#ffffff';
         showToast('📋 프롬프트가 클립보드에 복사되었습니다!');
         setTimeout(() => {
           btn.textContent = orig;
