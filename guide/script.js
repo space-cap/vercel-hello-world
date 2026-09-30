@@ -32,20 +32,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── 3. Dark / Light Mode Toggle ───────────────────────────
   const btnMode = document.getElementById('btn-mode');
-  const savedTheme = localStorage.getItem('book-theme') || 'dark';
-  if (savedTheme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  const savedTheme = localStorage.getItem('book-theme') || 'light';
+  if (savedTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    if (btnMode) btnMode.title = '라이트 모드로 전환';
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    if (btnMode) btnMode.title = '다크 모드로 전환';
+  }
 
   if (btnMode) {
     btnMode.addEventListener('click', () => {
-      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      if (isLight) {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
         document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('book-theme', 'dark');
-        btnMode.title = '라이트 모드로 전환';
-      } else {
-        document.documentElement.setAttribute('data-theme', 'light');
         localStorage.setItem('book-theme', 'light');
         btnMode.title = '다크 모드로 전환';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('book-theme', 'dark');
+        btnMode.title = '라이트 모드로 전환';
       }
     });
   }

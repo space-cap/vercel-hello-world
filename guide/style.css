@@ -655,61 +655,110 @@ p em {
   line-height: 1.65;
 }
 
-/* ── Prompt Box ───────────────────────────── */
+/* ── Prompt Box (High-Contrast Professional Code Block) ──── */
 .prompt-box {
-  background: #0f172a;
-  border: 1px solid #1e293b;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
   border-radius: 10px;
   margin: 2rem 0;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.06);
 }
 
-.prompt-header {
-  background: #1e293b;
-  padding: 0.65rem 1rem;
+.prompt-header,
+.pb-header {
+  background: #edf2f7;
+  padding: 0.7rem 1.15rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid #e2e8f0;
+  gap: 0.75rem;
 }
 
-.prompt-title {
+.prompt-title,
+.pb-label {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #94a3b8;
-  letter-spacing: 0.02em;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.01em;
 }
 
-.btn-copy {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #e2e8f0;
+.btn-copy,
+.btn-copy-prompt {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   font-weight: 600;
-  padding: 0.25rem 0.65rem;
-  border-radius: 4px;
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.15s ease;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.btn-copy:hover {
+.btn-copy:hover,
+.btn-copy-prompt:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+}
+
+.prompt-code,
+.prompt-box pre {
+  margin: 0;
+  padding: 1.35rem 1.4rem;
+  color: #0f172a !important;
+  background: #f8fafc !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.88rem !important;
+  font-weight: 500 !important;
+  line-height: 1.75 !important;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+}
+
+/* Dark mode override for prompt boxes */
+[data-theme="dark"] .prompt-box {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .prompt-header,
+[data-theme="dark"] .pb-header {
+  background: #1e293b;
+  border-bottom-color: #334155;
+}
+
+[data-theme="dark"] .prompt-title,
+[data-theme="dark"] .pb-label {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .btn-copy,
+[data-theme="dark"] .btn-copy-prompt {
+  background: #1e293b;
+  border-color: #475569;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .btn-copy:hover,
+[data-theme="dark"] .btn-copy-prompt:hover {
   background: var(--primary);
   border-color: var(--primary);
   color: #ffffff;
 }
 
-.prompt-code {
-  padding: 1.25rem;
-  color: #e2e8f0;
-  font-family: var(--font-mono);
-  font-size: 0.86rem;
-  line-height: 1.7;
-  white-space: pre-wrap;
-  word-break: break-word;
-  overflow-x: auto;
+[data-theme="dark"] .prompt-code,
+[data-theme="dark"] .prompt-box pre {
+  color: #f8fafc !important;
+  background: #0f172a !important;
 }
 
 /* ── Worksheets ───────────────────────────── */
