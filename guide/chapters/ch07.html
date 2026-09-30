@@ -1,0 +1,56 @@
+<section class="chapter-section" id="ch07">
+        <div class="chapter-entry">
+          <div class="chapter-num-big">07</div>
+          <h2 class="chapter-h2">Day 1: Cursor 세팅과<br>첫 컴포넌트 바이브코딩</h2>
+          <div class="chapter-meta"><span>⏱ 약 4분</span><span>·</span><span>PART 3 · 실행</span></div>
+        </div>
+        <p class="lead">Cursor는 AI가 코드를 직접 작성하고 수정하는 에디터입니다. Visual Studio Code에 AI 두뇌를 이식한 것이라고 이해하면 됩니다.</p>
+
+        <h3 class="section-h3">Day 1 체크리스트</h3>
+        <div class="checklist">
+          <label><input type="checkbox"> cursor.sh 에서 Cursor 설치 및 계정 생성</label>
+          <label><input type="checkbox"> Node.js 20 LTS 설치 (nodejs.org)</label>
+          <label><input type="checkbox"> <code>npx create-next-app@latest my-mvp</code> 실행</label>
+          <label><input type="checkbox"> Supabase 프로젝트 생성 (supabase.com)</label>
+          <label><input type="checkbox"> 프로젝트 루트에 <code>.cursorrules</code> 파일 생성</label>
+          <label><input type="checkbox"> GitHub 레포지토리 생성 및 첫 커밋</label>
+        </div>
+
+        <div class="prompt-box">
+          <div class="pb-header">
+            <span class="pb-label">📋 PROMPT #4 — 프로젝트 초기 구조 생성</span>
+            <button class="btn-copy-prompt" data-target="p4">복사</button>
+          </div>
+          <pre id="p4">Next.js 15 App Router 기반으로 다음 MVP의 초기 프로젝트 구조를 만들어 주세요.
+
+서비스: [서비스명]
+핵심 기능: [기능 설명]
+기술 스택: Next.js 15, Supabase, TypeScript, Tailwind CSS
+
+요구사항:
+- app/ 디렉토리 구조로 라우팅 설계
+- Supabase 클라이언트 초기화 코드 (lib/supabase.ts)
+- 기본 레이아웃 (헤더, 메인, 푸터)
+- 환경변수(.env.local) 필요 항목 목록
+- 각 폴더와 파일의 역할을 주석으로 설명</pre>
+        </div>
+
+        <div class="prompt-box">
+          <div class="pb-header">
+            <span class="pb-label">📋 PROMPT #5 — .cursorrules 초기 템플릿</span>
+            <button class="btn-copy-prompt" data-target="p5">복사</button>
+          </div>
+          <pre id="p5"># Project: [프로젝트명]
+# Stack: Next.js 15, Supabase, TypeScript, Tailwind CSS, Toss Payments
+# Role: Senior Fullstack Engineer for a non-technical solo founder
+
+## Rules
+1. Always write clean, production-ready, fully-typed TypeScript code.
+2. When asked to add a feature, show the complete file — never partial snippets.
+3. Never break existing Supabase auth or payment webhook logic.
+4. Use Tailwind CSS for all styling. Never use inline styles.
+5. Handle all errors gracefully with user-friendly Korean error messages.
+6. Explain what each code block does in a single Korean comment line above it.
+7. When in doubt, ask for clarification rather than making assumptions.</pre>
+        </div>
+      </section>

@@ -1,0 +1,59 @@
+<!-- CH 06 -->
+      <section class="chapter-section" id="ch06">
+        <div class="chapter-entry">
+          <div class="chapter-num-big">06</div>
+          <h2 class="chapter-h2">유저 플로우 & DB 설계:<br>비개발자도 3분 만에 완성하는 법</h2>
+          <div class="chapter-meta"><span>⏱ 약 4분</span><span>·</span><span>PART 2 · 기획</span></div>
+        </div>
+        <p class="lead">데이터베이스(DB)는 어렵지 않습니다. "어떤 정보를 저장하고, 누가 그것을 보는가?"라는 질문에만 답하면 됩니다.</p>
+
+        <p>카드뉴스 SaaS를 예시로 들겠습니다. 이 서비스에 필요한 DB 테이블은 딱 3개입니다.</p>
+
+        <div class="db-schema">
+          <div class="db-table">
+            <div class="db-table-name">🗂 users (사용자)</div>
+            <div class="db-fields">
+              <div class="db-field"><span class="df-key">id</span><span class="df-type">uuid, PK</span></div>
+              <div class="db-field"><span class="df-key">email</span><span class="df-type">text, unique</span></div>
+              <div class="db-field"><span class="df-key">created_at</span><span class="df-type">timestamp</span></div>
+            </div>
+          </div>
+          <div class="db-arrow">→</div>
+          <div class="db-table">
+            <div class="db-table-name">🖼 cards (카드뉴스)</div>
+            <div class="db-fields">
+              <div class="db-field"><span class="df-key">id</span><span class="df-type">uuid, PK</span></div>
+              <div class="db-field"><span class="df-key">user_id</span><span class="df-type">FK → users</span></div>
+              <div class="db-field"><span class="df-key">keyword</span><span class="df-type">text</span></div>
+              <div class="db-field"><span class="df-key">image_urls</span><span class="df-type">text[]</span></div>
+            </div>
+          </div>
+          <div class="db-arrow">→</div>
+          <div class="db-table">
+            <div class="db-table-name">💳 payments (결제)</div>
+            <div class="db-fields">
+              <div class="db-field"><span class="df-key">id</span><span class="df-type">uuid, PK</span></div>
+              <div class="db-field"><span class="df-key">user_id</span><span class="df-type">FK → users</span></div>
+              <div class="db-field"><span class="df-key">amount</span><span class="df-type">integer</span></div>
+              <div class="db-field"><span class="df-key">status</span><span class="df-type">text</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="prompt-box">
+          <div class="pb-header">
+            <span class="pb-label">📋 PROMPT #3 — DB 설계 자동화 프롬프트</span>
+            <button class="btn-copy-prompt" data-target="p3">복사</button>
+          </div>
+          <pre id="p3">나는 다음 서비스를 만들 예정입니다:
+[서비스 설명 1~2줄]
+
+핵심 기능: [킬러 기능 1개]
+결제 방식: 토스페이먼츠 단건 결제 (월정액 없음)
+
+Supabase PostgreSQL 기준으로:
+1. 이 MVP에 필요한 최소한의 DB 테이블 (2~4개)을 설계해 주세요.
+2. 각 테이블의 컬럼명, 데이터타입, PK/FK 관계를 표로 정리해 주세요.
+3. 절대로 초기 버전에 필요 없는 테이블이나 컬럼을 제안하지 마세요.</pre>
+        </div>
+      </section>

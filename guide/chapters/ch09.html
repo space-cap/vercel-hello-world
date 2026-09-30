@@ -1,0 +1,60 @@
+<!-- CH 09 -->
+      <section class="chapter-section" id="ch09">
+        <div class="chapter-entry">
+          <div class="chapter-num-big">09</div>
+          <h2 class="chapter-h2">Day 5: 토스페이먼츠 결제 연동 —<br>첫 100원의 쾌감</h2>
+          <div class="chapter-meta"><span>⏱ 약 5분</span><span>·</span><span>PART 3 · 실행</span></div>
+        </div>
+        <p class="lead">첫 결제가 터지는 순간은 창업가 인생에서 잊지 못할 경험입니다. 그 순간을 Day 5에 경험하게 될 것입니다.</p>
+
+        <h3 class="section-h3">토스페이먼츠 연동 3단계</h3>
+        <div class="numbered-list">
+          <div class="nl-item">
+            <span class="nl-num">01</span>
+            <div class="nl-body">
+              <strong>토스페이먼츠 개발자센터 가입 및 API Key 발급</strong>
+              <p>developers.tosspayments.com 에서 가입. "테스트 클라이언트 키"와 "테스트 시크릿 키"를 발급받아 <code>.env.local</code> 에 저장합니다.</p>
+            </div>
+          </div>
+          <div class="nl-item">
+            <span class="nl-num">02</span>
+            <div class="nl-body">
+              <strong>결제창 호출 (프론트엔드)</strong>
+              <p>Cursor에게 아래 PROMPT #7을 요청하면 결제 버튼부터 결제창 호출까지 완성 코드를 받을 수 있습니다.</p>
+            </div>
+          </div>
+          <div class="nl-item">
+            <span class="nl-num">03</span>
+            <div class="nl-body">
+              <strong>결제 승인 웹훅 (백엔드 API Route)</strong>
+              <p>결제 완료 후 토스 서버에서 우리 서버로 결제 정보를 전송합니다. 이 과정을 "승인"이라고 하며, Supabase에 결제 기록을 저장합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="prompt-box">
+          <div class="pb-header">
+            <span class="pb-label">📋 PROMPT #7 — 토스페이먼츠 결제 모듈 전체 구현</span>
+            <button class="btn-copy-prompt" data-target="p7">복사</button>
+          </div>
+          <pre id="p7">Next.js 15 App Router와 토스페이먼츠 결제창 v2를 연동해 주세요.
+
+결제 시나리오:
+1. 사용자가 "결제하기" 버튼을 클릭
+2. 토스페이먼츠 결제창이 열림 (금액: [금액]원)
+3. 결제 완료 시 /payment/success 로 리다이렉트
+4. /payment/success 에서 결제 승인 API 호출
+5. 승인 성공 시 Supabase payments 테이블에 기록 저장
+6. 사용자에게 성공 메시지 표시
+
+필요한 파일을 모두 작성해 주세요:
+- components/PaymentButton.tsx
+- app/payment/success/page.tsx
+- app/api/payment/confirm/route.ts
+- .env.local 에 필요한 환경변수 목록
+
+환경변수 예시:
+NEXT_PUBLIC_TOSS_CLIENT_KEY=test_ck_...
+TOSS_SECRET_KEY=test_sk_...</pre>
+        </div>
+      </section>

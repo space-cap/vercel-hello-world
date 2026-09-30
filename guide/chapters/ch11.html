@@ -1,0 +1,73 @@
+<section class="chapter-section" id="ch11">
+        <div class="chapter-entry">
+          <div class="chapter-num-big">11</div>
+          <h2 class="chapter-h2">.cursorrules 전략:<br>당신의 제품을 AI가 영구적으로 이해하게 만드는 법</h2>
+          <div class="chapter-meta"><span>⏱ 약 5분</span><span>·</span><span>PART 4 · 외주 졸업</span></div>
+        </div>
+        <p class="lead">.cursorrules는 Cursor AI에게 "이 프로젝트는 이런 구조이고, 이런 방식으로 코딩해야 한다"는 영구 기억을 심어주는 파일입니다. 이것이 바로 외주 졸업 키트의 핵심입니다.</p>
+
+        <h3 class="section-h3">3가지 유형별 .cursorrules 전문 템플릿</h3>
+
+        <div class="prompt-box">
+          <div class="pb-header">
+            <span class="pb-label">📋 Type A — SaaS / 구독형 서비스용 .cursorrules</span>
+            <button class="btn-copy-prompt" data-target="p-rules-a">복사</button>
+          </div>
+          <pre id="p-rules-a"># Project Type: B2C SaaS with Subscription
+# Stack: Next.js 15, Supabase, Stripe or Toss (recurring billing), TypeScript
+
+## Core Rules
+1. Always preserve the subscription status check logic in middleware.ts
+2. Never expose secret keys; always use server-side API routes for payment operations
+3. Use Row Level Security (RLS) in Supabase — every table must have user-scoped policies
+4. Write idempotent webhook handlers — duplicate events must be safely ignored
+5. All UI text must be in Korean; all variable names in English
+
+## Code Style
+- Components: PascalCase (.tsx), Hooks: camelCase with 'use' prefix
+- Always add loading and error states to async components
+- Prefer Server Components; use Client Components only when user interaction is needed</pre>
+        </div>
+
+        <div class="prompt-box">
+          <div class="pb-header">
+            <span class="pb-label">📋 Type B — 마켓플레이스 / 단건 결제용 .cursorrules</span>
+            <button class="btn-copy-prompt" data-target="p-rules-b">복사</button>
+          </div>
+          <pre id="p-rules-b"># Project Type: Digital Marketplace with One-time Payment
+# Stack: Next.js 15, Supabase Storage, Toss Payments (one-time), TypeScript
+
+## Core Rules
+1. Payment confirmation must always happen server-side — never trust client-side callbacks
+2. Download links must be generated server-side with signed URLs (15-minute expiry)
+3. Supabase Storage bucket must be private — never public
+4. Every purchase creates a record in the 'purchases' table before download is allowed
+5. Handle Toss webhook idempotency using the payment orderId as a unique key
+
+## File Upload Rules
+- Max file size: 50MB per asset
+- Allowed MIME types: PDF, ZIP, PNG, JPG, MP4
+- Always validate file type on both client and server</pre>
+        </div>
+
+        <div class="prompt-box">
+          <div class="pb-header">
+            <span class="pb-label">📋 Type C — 콘텐츠 플랫폼 / 멤버십용 .cursorrules</span>
+            <button class="btn-copy-prompt" data-target="p-rules-c">복사</button>
+          </div>
+          <pre id="p-rules-c"># Project Type: Content Platform with Membership Tiers
+# Stack: Next.js 15, Supabase, Toss (recurring), TypeScript, MDX for content
+
+## Core Rules
+1. Gate premium content by checking user's active subscription tier in middleware
+2. Never render premium content in the HTML for non-paying users — check server-side
+3. Membership tiers: FREE | BASIC | PRO — always check the correct tier before rendering
+4. All content is stored in /content/*.mdx — never in the database
+5. Cache content pages with Next.js ISR (revalidate: 3600)
+
+## Editorial Rules
+- All article slugs must be in English, kebab-case
+- Author attribution is required for every article
+- Tag taxonomy must be consistent — no ad-hoc tags</pre>
+        </div>
+      </section>

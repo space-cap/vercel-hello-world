@@ -1,0 +1,8 @@
+{
+  "name": "vibecraft-mvp",
+  "version": "1.0.0",
+  "description": "VibeCraft - 7일 만에 완성하는 바이브코딩 MVP 에이전시 및 실전 웹북",
+  "scripts": {
+    "build": "node guide/build.js"
+  }
+}
