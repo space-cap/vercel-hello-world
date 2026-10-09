@@ -222,6 +222,102 @@
         opacity: 1 !important;
       }
     }
+
+    /* ── Share Button ── */
+    .btn-share {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-base);
+      color: var(--text-body);
+      padding: 0.4rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.15s ease;
+    }
+    .btn-share:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-strong);
+      color: var(--text-main);
+    }
+
+    /* ── TOC Search Box ── */
+    .toc-search-wrap {
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.5rem;
+    }
+    .toc-search-input {
+      width: 100%;
+      padding: 0.55rem 0.85rem;
+      font-size: 0.82rem;
+      font-family: var(--font-sans);
+      background: var(--bg-page);
+      border: 1px solid var(--border-base);
+      border-radius: 8px;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.15s ease;
+      box-sizing: border-box;
+    }
+    .toc-search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+    }
+    .toc-no-results {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    /* ── Back to Top Floating Button ── */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      color: var(--text-main);
+      border: 1px solid var(--border-base);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 990;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .back-to-top:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+    }
+    [data-theme="dark"] .back-to-top {
+      background: #1e293b;
+      border-color: #334155;
+      color: #f8fafc;
+    }
+    [data-theme="dark"] .back-to-top:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
   </style>
 </head>
 <body>
@@ -240,6 +336,7 @@
       </div>
       <div class="toolbar-actions">
         <button class="btn-toc-toggle" id="btn-toc-toggle" title="목차 열기/닫기">☰ 목차</button>
+        <button class="btn-share" id="btn-share" title="가이드북 링크 복사">🔗 공유</button>
         <button class="btn-mode" id="btn-mode" title="다크/라이트 전환">🌓</button>
         <button class="btn-print" id="btn-print">📄 PDF 저장</button>
       </div>
@@ -253,6 +350,10 @@
     <!-- Left Sidebar TOC -->
     <aside class="sidebar no-print">
       <nav class="toc-nav">
+        <div class="toc-search-wrap">
+          <input type="text" id="toc-search-input" class="toc-search-input" placeholder="🔍 목차 / 키워드 검색..." autocomplete="off">
+        </div>
+        <div class="toc-no-results" id="toc-no-results" style="display: none;">검색 결과가 없습니다</div>
         <div class="toc-section-label">목 차</div>
         <a href="#cover" class="toc-link">표지 & 저자 소개</a>
         <a href="#intro" class="toc-link">이 책을 활용하는 법</a>
@@ -2704,6 +2805,9 @@ TypeScript로 작성해 주세요.</pre>
 
     </main>
   </div>
+
+  <!-- Back to Top Floating Button -->
+  <button class="back-to-top no-print" id="btn-back-to-top" title="맨 위로 이동">↑</button>
 
   <!-- Toast -->
   <div class="toast-msg" id="toast">📋 클립보드에 복사되었습니다!</div>

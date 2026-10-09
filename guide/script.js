@@ -162,4 +162,70 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ── 9. Back to Top Floating Button ────────────────────────
+  const btnTop = document.getElementById('btn-back-to-top');
+  if (btnTop) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        btnTop.classList.add('show');
+      } else {
+        btnTop.classList.remove('show');
+      }
+    }, { passive: true });
+
+    btnTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // ── 10. TOC Quick Search / Filter ─────────────────────────
+  const searchInput = document.getElementById('toc-search-input');
+  const allTocLinks = document.querySelectorAll('.toc-link');
+  const partLabels = document.querySelectorAll('.toc-part-label, .toc-section-label');
+  const noResults = document.getElementById('toc-no-results');
+
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.trim().toLowerCase();
+      let matchCount = 0;
+
+      if (!query) {
+        allTocLinks.forEach(link => link.style.display = '');
+        partLabels.forEach(label => label.style.display = '');
+        if (noResults) noResults.style.display = 'none';
+        return;
+      }
+
+      // Hide section labels during search for cleaner list
+      partLabels.forEach(label => label.style.display = 'none');
+
+      allTocLinks.forEach(link => {
+        const text = link.textContent.toLowerCase();
+        if (text.includes(query)) {
+          link.style.display = '';
+          matchCount++;
+        } else {
+          link.style.display = 'none';
+        }
+      });
+
+      if (noResults) {
+        noResults.style.display = matchCount === 0 ? 'block' : 'none';
+      }
+    });
+  }
+
+  // ── 11. Share Button (Copy Current Link) ──────────────────
+  const btnShare = document.getElementById('btn-share');
+  if (btnShare) {
+    btnShare.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        showToast('🔗 가이드북 링크가 클립보드에 복사되었습니다!');
+      } catch (err) {
+        showToast('⚠️ 링크 복사에 실패했습니다.');
+      }
+    });
+  }
+
 });
