@@ -2,53 +2,54 @@
 <section class="chapter-section" id="ch09">
   <div class="chapter-entry">
     <div class="chapter-num-big">09</div>
-    <h2 class="chapter-h2">Day 5: 토스페이먼츠 결제 연동 —<br>첫 100원의 쾌감과 보안 2대 함정</h2>
-    <div class="chapter-meta"><span>⏱ 약 5분</span><span>·</span><span>PART 3 · 실행</span></div>
+    <h2 class="chapter-h2">Day 5: 토스페이먼츠 결제 연동 —<br>첫 1,000원의 전율과 실전 심사·보안 가이드</h2>
+    <div class="chapter-meta"><span>⏱ 약 8분</span><span>·</span><span>PART 3 · 실행</span></div>
   </div>
-  <p class="lead">첫 결제가 실제로 터지는 순간은 창업가 인생에서 잊지 못할 경험입니다. "코드만 있는 화면"이 <strong>"고객이 돈을 지불하는 진짜 비즈니스"</strong>로 승격되는 날이기 때문입니다.</p>
+  <p class="lead">내 웹사이트에서 첫 결제가 실제로 터지는 순간은 창업가 인생에서 잊지 못할 희열을 줍니다. "단순한 코드 덩어리"가 <strong>"고객이 신용카드를 꺼내 돈을 지불하는 진짜 비즈니스"</strong>로 승격되는 날이기 때문입니다.</p>
 
-  <h3 class="section-h3">토스페이먼츠 연동 3단계</h3>
+  <h3 class="section-h3">Step 1. 토스페이먼츠 3단계 연동 흐름</h3>
   <div class="numbered-list">
     <div class="nl-item">
       <span class="nl-num">01</span>
       <div class="nl-body">
-        <strong>토스페이먼츠 개발자센터 가입 및 API Key 발급</strong>
-        <p>developers.tosspayments.com 에서 회원가입 후 [내 개발 정보]에서 "테스트 클라이언트 키"와 "테스트 시크릿 키"를 발급받아 프로젝트의 <code>.env.local</code> 에 저장합니다.</p>
+        <strong>토스 개발자센터 가입 & 테스트 API 키 발급</strong>
+        <p>developers.tosspayments.com 에서 무료 가입 후 [내 개발 정보]에서 테스트 클라이언트 키(`test_ck_...`)와 시크릿 키(`test_sk_...`)를 복사해 프로젝트의 <code>.env.local</code>에 저장합니다.</p>
       </div>
     </div>
     <div class="nl-item">
       <span class="nl-num">02</span>
       <div class="nl-body">
         <strong>결제창 SDK 호출 (프론트엔드 UI)</strong>
-        <p>Cursor에게 아래 PROMPT #7을 주면 결제 위젯/결제창 호출 컴포넌트를 즉시 생성해 줍니다. 사용자가 [결제하기]를 누르면 토스 간편결제 창이 뜹니다.</p>
+        <p>Cursor에게 아래 <strong>PROMPT #7</strong>을 주면 결제창 위젯 컴포넌트를 즉시 생성해 줍니다. 고객이 [결제하기]를 누르면 카카오페이, 토스페이, 신용카드 창이 뜹니다.</p>
       </div>
     </div>
     <div class="nl-item">
       <span class="nl-num">03</span>
       <div class="nl-body">
-        <strong>결제 승인 웹훅 (서버 사이드 API Route)</strong>
-        <p>고객이 결제를 마쳤다고 바로 끝이 아닙니다. 우리 백엔드 서버가 토스 승인 API를 호출하여 "진짜 결제가 맞는지" 최종 확인하고 Supabase 데이터베이스에 구매 기록을 기록해야 합니다.</p>
+        <strong>결제 승인 API (서버 사이드 백엔드)</strong>
+        <p>고객이 결제를 마쳤다고 끝이 아닙니다. 백엔드 서버가 토스 승인 API를 호출하여 "위변조가 없는 진짜 결제인가?" 최종 검증한 뒤 Supabase DB에 주문 완료 상태(`PAID`)를 기록해야 합니다.</p>
       </div>
     </div>
   </div>
 
   <div class="prompt-box">
-    <div class="prompt-header">
-      <span class="prompt-title">📋 PROMPT #7 — 토스페이먼츠 결제창 v2 및 승인 API 완성본</span>
-      <button class="btn-copy" data-target="p7">복사</button>
+    <div class="pb-header">
+      <span class="pb-label">📋 PROMPT #7 — 토스페이먼츠 결제창 v2 및 백엔드 승인 API 완성본</span>
+      <button class="btn-copy-prompt" data-target="p7">복사</button>
     </div>
-    <pre class="prompt-code" id="p7">Next.js 15 App Router와 토스페이먼츠 결제창 SDK를 연동해 주세요.
+    <pre id="p7">Next.js 15 App Router와 토스페이먼츠 최신 SDK를 연동해 주세요.
 
 결제 흐름:
 1. 사용자가 상품 결제 버튼 클릭 (/pricing 또는 /checkout)
 2. 토스페이먼츠 결제창 오픈 (금액: [금액]원, 주문명: [주문명])
-3. 성공 시 /payment/success 로 리다이렉트 (orderId, paymentKey, amount 파라미터 전달)
-4. /payment/success 페이지에서 백엔드 승인 API(/api/payment/confirm) 호출
-5. 승인 완료 시 Supabase orders 테이블에 status='PAID' 저장 및 유저 크레딧 충전
+3. 결제 인증 성공 시 /payment/success 로 리다이렉트 (orderId, paymentKey, amount 파라미터 전달)
+4. /payment/success 페이지에서 백엔드 승인 API(/api/payment/confirm) POST 요청
+5. 승인 완료 시 Supabase orders 테이블에 status='PAID' 저장 및 유저 서비스 이용 권한 부여
 
 필수 보안 조건:
 - TOSS_SECRET_KEY는 오직 백엔드 API route(서버 사이드)에서만 사용해야 하며, 클라이언트에 절대 노출되지 않도록 할 것.
 - 결제 요청 금액과 실제 승인 금액이 일치하는지 서버에서 교차 검증할 것.
+- 이미 승인된 orderId가 중복 요청되었을 때 멱등성(Idempotency) 방어 로직을 작성할 것.
 
 작성할 파일 목록:
 - components/PaymentCheckout.tsx
@@ -56,9 +57,50 @@
 - app/api/payment/confirm/route.ts</pre>
   </div>
 
-  <!-- 결제 연동 2대 치명적 함정 -->
+  <h3 class="section-h3">Step 2. 99% 반려 방지: 토스페이먼츠 비대면 심사 통과 체크리스트</h3>
+  <p>테스트 모드에서 결제가 잘 되더라도, 실제 돈을 받으려면 토스페이먼츠의 가맹점 심사를 받아야 합니다. 아래 5가지가 웹사이트에 없으면 <strong>심사가 100% 반려</strong>됩니다.</p>
+  <div class="checklist">
+    <label><input type="checkbox"> <strong>홈페이지 하단(Footer) 필수 정보 8종 기재:</strong> 상호명, 대표자 성명, 사업자등록번호, 통신판매업신고번호, 사업장 소재지 주소, 대표 전화번호, 대표 이메일, 호스팅 서비스 제공자(Vercel)</label>
+    <label><input type="checkbox"> <strong>이용약관 및 개인정보처리방침 링크:</strong> 하단에 링크가 있고 실제 열리는 페이지가 존재해야 함</label>
+    <label><input type="checkbox"> <strong>환불 및 청약철회 규정 명시:</strong> 결제 안내 페이지나 약관에 "결제 후 7일 이내 환불 가능 규정" 명시</label>
+    <label><input type="checkbox"> <strong>실제 상품 판매 페이지 작동:</strong> 상품 가격과 제공 혜택이 명확하게 적혀 있어야 함 (빈 페이지 불가)</label>
+    <label><input type="checkbox"> <strong>SSL 보안인증서:</strong> <code>https://</code> 자물쇠가 정상 작동해야 함 (Vercel은 자동 지원)</label>
+  </div>
+
+  <h3 class="section-h3">Step 3. 테스트 모드 ➔ 실제 돈 들어오는 '라이브 모드' 전환 4단계</h3>
+  <p>심사가 승인되면 [토스페이먼츠 상점관리자]에서 실운영 키(`live_ck_...`, `live_sk_...`)를 발급받을 수 있습니다.</p>
+  <div class="numbered-list">
+    <div class="nl-item">
+      <span class="nl-num">01</span>
+      <div class="nl-body">
+        <strong>Vercel 환경변수(Environment Variables) 교체</strong>
+        <p>Vercel 대시보드 → 프로젝트 Settings → [Environment Variables]에서 `NEXT_PUBLIC_TOSS_CLIENT_KEY`와 `TOSS_SECRET_KEY` 값을 `live_`로 시작하는 실운영 키로 교체합니다.</p>
+      </div>
+    </div>
+    <div class="nl-item">
+      <span class="nl-num">02</span>
+      <div class="nl-body">
+        <strong>Vercel 재배포(Redeploy) 실행</strong>
+        <p>환경변수를 바꾼 뒤에는 반드시 Vercel [Deployments]에서 최신 배포본의 [...] 메뉴를 눌러 <strong>[Redeploy]</strong>를 실행해야 새 키가 서버에 적용됩니다.</p>
+      </div>
+    </div>
+    <div class="nl-item">
+      <span class="nl-num">03</span>
+      <div class="nl-body">
+        <strong>내 신용카드로 1,000원 테스트 결제 & 취소</strong>
+        <p>라이브 사이트에서 본인의 카드로 직접 1,000원을 결제해 보세요. 통장에서 돈이 빠져나가고, 사이트 권한이 부여되고, 토스 상점관리자에 결제 내역이 뜨면 즉시 [취소] 버튼을 눌러 환불을 확인합니다.</p>
+      </div>
+    </div>
+    <div class="nl-item">
+      <span class="nl-num">04</span>
+      <div class="nl-body">
+        <strong>웹훅(Webhook) 실시간 알림 등록</strong>
+        <p>토스 개발자센터 → [웹훅 관리]에서 `https://내도메인.com/api/payment/webhook`을 등록하면 가상계좌 입금이나 카드 취소 건도 자동으로 DB와 동기화됩니다.</p>
+      </div>
+    </div>
+  </div>
+
   <h3 class="section-h3">⚠️ 비개발자가 결제 연동 시 저지르는 2대 치명적 실수</h3>
-  
   <div class="callout callout-warning">
     <div class="callout-icon">🚨</div>
     <div class="callout-body">

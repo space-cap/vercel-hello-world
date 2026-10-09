@@ -123,4 +123,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update if meta shows placeholder — already set in HTML; this adds dynamic calc as fallback
   });
 
+  // ── 8. Mobile Sidebar Drawer Toggle ───────────────────────
+  const btnToc = document.getElementById('btn-toc-toggle');
+  const sidebar = document.querySelector('.sidebar');
+  const backdrop = document.getElementById('sidebar-backdrop');
+
+  function toggleSidebar(open) {
+    if (!sidebar) return;
+    const shouldOpen = open !== undefined ? open : !sidebar.classList.contains('open');
+    if (shouldOpen) {
+      sidebar.classList.add('open');
+      if (backdrop) backdrop.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    } else {
+      sidebar.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (btnToc) {
+    btnToc.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleSidebar();
+    });
+  }
+
+  if (backdrop) {
+    backdrop.addEventListener('click', () => toggleSidebar(false));
+  }
+
+  // Close mobile sidebar when clicking any TOC link
+  document.querySelectorAll('.toc-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 1024) {
+        toggleSidebar(false);
+      }
+    });
+  });
+
 });

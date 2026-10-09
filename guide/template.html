@@ -164,6 +164,64 @@
       color: #f8fafc !important;
       border-color: #475569 !important;
     }
+
+    /* ── Mobile TOC Drawer ── */
+    .btn-toc-toggle {
+      display: none;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-base);
+      color: var(--text-main);
+      padding: 0.4rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.15s ease;
+    }
+    .btn-toc-toggle:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-strong);
+    }
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(2px);
+      z-index: 998;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    @media (max-width: 1024px) {
+      .btn-toc-toggle {
+        display: inline-flex !important;
+      }
+      .sidebar {
+        display: block !important;
+        position: fixed !important;
+        top: 54px !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        height: calc(100vh - 54px) !important;
+        width: 300px !important;
+        max-width: 85vw !important;
+        background: var(--bg-surface) !important;
+        z-index: 999 !important;
+        transform: translateX(-100%);
+        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3) !important;
+        border-right: 1px solid var(--border-base) !important;
+      }
+      .sidebar.open {
+        transform: translateX(0) !important;
+      }
+      .sidebar-backdrop.show {
+        display: block !important;
+        opacity: 1 !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -181,11 +239,15 @@
         <span class="toolbar-title">바이브코딩 1인 창업 MVP 바이블</span>
       </div>
       <div class="toolbar-actions">
+        <button class="btn-toc-toggle" id="btn-toc-toggle" title="목차 열기/닫기">☰ 목차</button>
         <button class="btn-mode" id="btn-mode" title="다크/라이트 전환">🌓</button>
         <button class="btn-print" id="btn-print">📄 PDF 저장</button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
 
   <div class="book-layout">
     <!-- Left Sidebar TOC -->
