@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const guideDir = path.resolve(process.cwd());
+const guideDir = __dirname;
 const templatePath = path.join(guideDir, 'template.html');
 const chaptersDir = path.join(guideDir, 'chapters');
 const outputPath = path.join(guideDir, 'index.html');
