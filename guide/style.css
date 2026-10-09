@@ -694,22 +694,22 @@ p em {
 
 /* ── Prompt Box (High-Contrast Professional Code Block) ──── */
 .prompt-box {
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
+  background: #0f172a !important;
+  border: 1px solid #334155 !important;
   border-radius: 10px;
   margin: 2rem 0;
   overflow: hidden;
-  box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
 }
 
 .prompt-header,
 .pb-header {
-  background: #edf2f7;
-  padding: 0.7rem 1.15rem;
+  background: #1e293b !important;
+  padding: 0.75rem 1.15rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #334155 !important;
   gap: 0.75rem;
 }
 
@@ -718,83 +718,76 @@ p em {
   font-family: var(--font-mono);
   font-size: 0.82rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #38bdf8 !important; /* 밝은 스카이블루 */
   letter-spacing: -0.01em;
 }
 
 .btn-copy,
 .btn-copy-prompt {
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  color: #334155;
+  background: #334155 !important;
+  border: 1px solid #64748b !important;
+  color: #f8fafc !important;
   font-family: var(--font-sans);
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  padding: 0.3rem 0.75rem;
+  padding: 0.35rem 0.85rem;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.15s ease;
   flex-shrink: 0;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .btn-copy:hover,
 .btn-copy-prompt:hover {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: #ffffff;
-  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
 }
 
 .prompt-code,
 .prompt-box pre {
-  margin: 0;
-  padding: 1.35rem 1.4rem;
-  color: #0f172a !important;
-  background: #f8fafc !important;
+  margin: 0 !important;
+  padding: 1.35rem 1.4rem !important;
+  color: #f1f5f9 !important; /* 선명한 고대비 화이트 */
+  background: #0f172a !important; /* 다크 에디터 배경 */
   font-family: var(--font-mono) !important;
   font-size: 0.88rem !important;
-  font-weight: 500 !important;
+  font-weight: 400 !important;
   line-height: 1.75 !important;
-  white-space: pre-wrap;
-  word-break: break-word;
-  overflow-x: auto;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-x: auto !important;
 }
 
-/* Dark mode override for prompt boxes */
+/* Dark mode overrides (same high contrast) */
 [data-theme="dark"] .prompt-box {
-  background: #0f172a;
-  border-color: #334155;
+  background: #0f172a !important;
+  border-color: #334155 !important;
 }
 
 [data-theme="dark"] .prompt-header,
 [data-theme="dark"] .pb-header {
-  background: #1e293b;
-  border-bottom-color: #334155;
+  background: #1e293b !important;
+  border-bottom-color: #334155 !important;
 }
 
 [data-theme="dark"] .prompt-title,
 [data-theme="dark"] .pb-label {
-  color: #f8fafc;
+  color: #38bdf8 !important;
 }
 
 [data-theme="dark"] .btn-copy,
 [data-theme="dark"] .btn-copy-prompt {
-  background: #1e293b;
-  border-color: #475569;
-  color: #e2e8f0;
-}
-
-[data-theme="dark"] .btn-copy:hover,
-[data-theme="dark"] .btn-copy-prompt:hover {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: #ffffff;
+  background: #334155 !important;
+  border-color: #64748b !important;
+  color: #f8fafc !important;
 }
 
 [data-theme="dark"] .prompt-code,
 [data-theme="dark"] .prompt-box pre {
-  color: #f8fafc !important;
+  color: #f1f5f9 !important;
   background: #0f172a !important;
 }
 

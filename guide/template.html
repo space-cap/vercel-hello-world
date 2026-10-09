@@ -9,7 +9,70 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <base href="/guide/">
-  <link rel="stylesheet" href="/guide/style.css?v=3">
+  <link rel="stylesheet" href="/guide/style.css?v=4">
+  <style>
+    /* ── Prompt Box 고대비 가독성 보장 (캐시 및 테마 무관 100% 보장) ── */
+    .prompt-box {
+      background: #0f172a !important;
+      border: 1px solid #334155 !important;
+      border-radius: 10px !important;
+      margin: 1.75rem 0 !important;
+      overflow: hidden !important;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2) !important;
+    }
+    .prompt-header,
+    .pb-header {
+      background: #1e293b !important;
+      padding: 0.75rem 1.15rem !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      border-bottom: 1px solid #334155 !important;
+      gap: 0.75rem !important;
+    }
+    .prompt-title,
+    .pb-label {
+      font-family: var(--font-mono, monospace) !important;
+      font-size: 0.82rem !important;
+      font-weight: 700 !important;
+      color: #38bdf8 !important; /* 밝고 선명한 스카이블루 */
+      letter-spacing: -0.01em !important;
+    }
+    .btn-copy,
+    .btn-copy-prompt {
+      background: #334155 !important;
+      border: 1px solid #64748b !important;
+      color: #f8fafc !important;
+      font-family: var(--font-sans, sans-serif) !important;
+      font-size: 0.78rem !important;
+      font-weight: 600 !important;
+      padding: 0.35rem 0.85rem !important;
+      border-radius: 6px !important;
+      cursor: pointer !important;
+      transition: all 0.15s ease !important;
+      flex-shrink: 0 !important;
+    }
+    .btn-copy:hover,
+    .btn-copy-prompt:hover {
+      background: #2563eb !important;
+      border-color: #2563eb !important;
+      color: #ffffff !important;
+    }
+    .prompt-code,
+    .prompt-box pre {
+      margin: 0 !important;
+      padding: 1.35rem 1.4rem !important;
+      color: #f1f5f9 !important; /* 고대비 화이트/슬레이트 */
+      background: #0f172a !important; /* 다크 에디터 배경 */
+      font-family: var(--font-mono, monospace) !important;
+      font-size: 0.88rem !important;
+      font-weight: 400 !important;
+      line-height: 1.75 !important;
+      white-space: pre-wrap !important;
+      word-break: break-word !important;
+      overflow-x: auto !important;
+    }
+  </style>
 </head>
 <body>
 
