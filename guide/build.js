@@ -10,6 +10,7 @@ const outputPath = path.join(guideDir, 'index.html');
 const chapterFiles = [
   '00-cover.html',
   '00-intro.html',
+  '00-glossary.html',
   'part1.html',
   'ch01.html',
   'ch02.html',
