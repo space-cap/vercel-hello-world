@@ -1355,3 +1355,79 @@ p em {
     color: #0f172a !important;
   }
 }
+
+/* ── Glossary Dictionary Typography ──────────────────────── */
+.glossary-cat-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 3rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.glossary-dict-list {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--border-base);
+  margin-bottom: 2.5rem;
+}
+
+.glossary-dict-row {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 2rem;
+  padding: 1.5rem 0.5rem;
+  border-top: 1px solid var(--border-base);
+  align-items: baseline;
+  transition: background-color 0.15s ease;
+}
+
+.glossary-dict-row:hover {
+  background-color: var(--bg-hover);
+}
+
+.glossary-dict-term {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dict-term-main {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+  font-family: var(--font-mono), var(--font-sans);
+}
+
+.dict-term-en {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.dict-term-ko {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+.glossary-dict-desc p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-body);
+  word-break: keep-all;
+}
+
+@media (max-width: 640px) {
+  .glossary-dict-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1.25rem 0.25rem;
+  }
+}
+
