@@ -32,6 +32,10 @@ const chapterFiles = [
   'ch15.html',
   'appendix-a.html',
   'appendix-b.html',
+  'appendix-c.html',
+  'appendix-d.html',
+  'appendix-e.html',
+  'appendix-f.html',
   'epilogue.html'
 ];
 
